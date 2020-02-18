@@ -1,0 +1,9 @@
+.edit {
+    color: blue;
+    margin-top: 2em;
+}
+
+.highlight {
+    background: red;
+    border: 2px solid yellow;
+}

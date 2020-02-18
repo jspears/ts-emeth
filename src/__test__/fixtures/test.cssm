@@ -1,0 +1,15 @@
+.container {
+    background: red;
+}
+
+.camel-case {
+    color: beige;
+}
+
+:local(.word) {
+    border: 2px solid pink;
+}
+.nameEdit {
+    composes: edit highlight from 'other.css';
+    background: red;
+}
