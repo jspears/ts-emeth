@@ -13,7 +13,7 @@ export class Options implements WatcherOptions {
     path: string[];
 
     @Arg('Template function to use')
-    template?: TemplateFn | string;
+    template: TemplateFn | string = `${__dirname}/template`;
 
     @Arg('Current working directory')
     cwd: string = process.cwd();

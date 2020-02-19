@@ -70,7 +70,7 @@ type ThemeFn<T extends Keyable, R> = ((...classes: TCArg<T>[]) => R);
 
 type ThemeRecord<K extends Keyable, V> = Record<K, V>;
 
-type KeyedThemeFn<T extends Keyable, R> = ThemeFn<T, R> & ThemeRecord<T, R>
+export type KeyedThemeFn<T extends Keyable, R> = ThemeFn<T, R> & ThemeRecord<T, R>
 
 type StyleRet<K extends Keyable> = KeyedThemeFn<K, string> & {
     container(props: HasClassName | string): string,
