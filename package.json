@@ -1,14 +1,18 @@
 {
   "name": "ts-emeth",
   "version": "1.0.0",
-  "description": "CSS Modules cli ",
+  "description": "CSS Modules cli for emeth and TypeScript",
   "types": "src",
   "main": "lib",
   "source": "src",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jspears/ts-emeth.git"
+  },
   "scripts": {
     "test": "mocha -r ts-node/register ./src/__test__/**/*-test.ts*",
-    "prepare": "tsc"
+    "prepare": "$npm_execpath run test && tsc"
   },
   "bin": {
     "tse": "./bin/tse.js"
@@ -20,7 +24,7 @@
     "chokidar": "^3.3.1",
     "css-loader": "^3.4.2",
     "reflect-metadata": "^0.1.13",
-    "ts-arg": "^1.0.2",
+    "ts-arg": "^1.0.3",
     "emeth": "^1.0.2"
   },
   "devDependencies": {
