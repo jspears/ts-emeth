@@ -1,4 +1,4 @@
-import {Classenames} from "./emeth";
+import {Classenames} from "emeth";
 
 const {defineProperty, keys, assign} = Object;
 export type Keyable = string | number | symbol;
@@ -76,9 +76,10 @@ type StyleRet<K extends Keyable> = KeyedThemeFn<K, string> & {
     container(props: HasClassName | string): string,
 }
 
-export const createStyles = <StyleT extends ThemeObj, StyleTK extends keyof StyleT>(tc, compTheme: StyleT):
+export const styleFactory = <StyleT extends ThemeObj, StyleTK extends keyof StyleT>(tc, compTheme: StyleT):
     StyleRet<StyleTK> => assign(((...classes: TCArg<StyleTK>[]) => new SecretClass(classes, tc).toString()), keys(compTheme).reduce((r, k) => {
-    defineProperty(r, k, {
+    Object.defineProperty(r, k, {
+        enumerable: true,
         get() {
             return tc(k);
         }
@@ -89,16 +90,6 @@ export const createStyles = <StyleT extends ThemeObj, StyleTK extends keyof Styl
         return tc('container', typeof props === 'string' ? adopt(props) : props && props.className ? adopt(props.className) : '');
     }
 });
-
-export const createTheme = <T>(tc, compTheme: T): KeyedThemeFn<keyof T, SecretClass<any>> =>
-    assign(((...classes: TCArg<keyof T>[]) => new SecretClass(classes, tc)), keys(compTheme).reduce((r, k) => {
-        defineProperty(r, k, {
-            get() {
-                return new SecretClass([k], tc);
-            }
-        });
-        return r;
-    }, {} as ThemeRecord<keyof T, SecretClass<any>>));
 
 
 export const adopt: ThemeFn<string, SecretClass<string>> = (...classes) => new SecretClass<string>(classes);

@@ -1,3 +1,5 @@
 .container {
-    background:blue
+    background:blue;
+    color:pink;
+    font-size: 5em
 }

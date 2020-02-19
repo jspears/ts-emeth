@@ -2,19 +2,42 @@
   "name": "ts-emeth-example",
   "private": true,
   "version": "1.0.0",
-  "description": "CSS Modules cli ",
+  "description": "CSS Modules cli example",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
-    "ts-emeth": "^1.0.0"
-  },
-  "scripts": {
-    "start": "tse ./public & mrbuilder"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "dependencies": {
+    "emeth": "^1.0.2",
+    "ts-emeth": "^1.0.0",
+    "@types/webpack-env": "^1.15.1"
+  },
+  "scripts": {
+    "start": "tse -w -v './public/**/*.csm' & mrbuilder"
+  },
   "devDependencies": {
-    "@mrbuilder/cli": "^4.0.0-alpha.14"
+    "@mrbuilder/cli": "^4.0.0-alpha.14",
+    "@mrbuilder/plugin-babel-7": "^4.0.0-alpha.14",
+    "@mrbuilder/plugin-typescript": "^4.0.0-alpha.14",
+    "@mrbuilder/preset-app": "^4.0.0-alpha.14",
+    "@mrbuilder/plugin-emeth": "^4.0.0-alpha.10"
+  },
+  "mrbuilder": {
+    "plugins": [
+      [
+        "@mrbuilder/plugin-typescript",
+        {
+          "useBabel": true
+        }
+      ],
+      "@mrbuilder/plugin-emeth",
+      [
+        "@mrbuilder/plugin-css",
+        {
+          "modules": "/\\.cssm$/"
+        }
+      ]
+    ]
   }
 }

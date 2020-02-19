@@ -4,4 +4,7 @@
 
 .header {
     color: yellow;
+    padding: 1em;
+    margin: 1em;
+    text-indent: 50%;
 }

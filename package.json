@@ -2,7 +2,9 @@
   "name": "ts-emeth",
   "version": "1.0.0",
   "description": "CSS Modules cli ",
-  "main": "index.js",
+  "types": "src",
+  "main": "lib",
+  "source": "src",
   "license": "MIT",
   "scripts": {
     "test": "mocha -r ts-node/register ./src/__test__/**/*-test.ts*",
@@ -13,11 +15,13 @@
   },
   "dependencies": {
     "@types/node": "^13.7.1",
+    "@types/webpack-env": "^1.15.1",
     "chalk": "^3.0.0",
     "chokidar": "^3.3.1",
     "css-loader": "^3.4.2",
     "reflect-metadata": "^0.1.13",
-    "ts-arg": "^1.0.2"
+    "ts-arg": "^1.0.2",
+    "emeth": "^1.0.2"
   },
   "devDependencies": {
     "nyc": "^15.0.0",

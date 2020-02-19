@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": "public",
     "outDir": "lib",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -8,11 +8,13 @@
     "target": "ES5",
     "allowJs": false,
     "declaration": false,
+    "jsx": "react",
     "lib": [
-      "es2018"
+      "es2018",
+      "dom"
+    ],
+    "types": [
+      "@types/webpack-env"
     ]
-  },
-  "exclude": [
-    "public/**"
-  ]
+  }
 }
