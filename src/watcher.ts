@@ -44,9 +44,8 @@ export const transformFile = async ({
     console.log('template = ' + template);
     const extract = transform({context: cwd}, {localsConvention});
     const templateFn = typeof template === 'function' ? template : await importTemplate(template);
-    return (filePath): Promise<string | void> => extract(filePath).then(keys => templateFn(filePath, keys)).then(async (content) => {
-        const parts = {...pathParse(filePath), base: undefined, ext: extension};
-        const fName = format(parts);
+    return (filePath): Promise<string | void> => extract(filePath).then(keys => templateFn(filePath, Array.from(new Set(keys)))).then(async (content) => {
+        const fName = format({...pathParse(filePath), base: undefined, ext: extension});
         const outFile = outDir ? relative(outDir, fName) : isAbsolute(fName) ? fName : join(cwd, fName);
         if (verbose) {
             console.log(chalk.yellowBright('Writing'), fName);
