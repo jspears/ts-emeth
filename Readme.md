@@ -2,6 +2,7 @@ TS-Emeth
 ===
 Tool for creating types for css modules with typescript typing and emeth.
 
+![Node.js CI](https://github.com/jspears/ts-emeth/workflows/Node.js%20CI/badge.svg)
 
 ## Usage
 Run it as a background process
