@@ -1,14 +1,33 @@
 import {Classenames} from "emeth";
 
-const {defineProperty, keys, assign} = Object;
 export type Keyable = string | number | symbol;
 
 
 export type TCArg<T extends Keyable> = T
     | T[]
-    | { [P in T]?: boolean | null | undefined | any }
+    | { [P in T]?: boolean | null | undefined | void | number | string | SecretClass<any>}
     | TCArg<T>[]
-    | SecretClass<any>
+    | SecretClass<any>;
+
+export interface ThemeObj {
+    [key: string]: string
+}
+
+export type HasClassName = {
+    className?: string;
+}
+
+export type ThemeFn<T extends Keyable, R> = ((...classes: TCArg<T>[]) => R);
+
+export type ThemeRecord<K extends Keyable, V> = Record<K, V>;
+
+export type KeyedThemeFn<T extends Keyable, R> = ThemeFn<T, R> & ThemeRecord<T, R>
+
+export type HasContainer<K extends Keyable, R> = {
+    container(props: HasClassName, ...args: TCArg<K>[]): R
+};
+
+export type StyleRet<K extends Keyable> = KeyedThemeFn<K, string> & HasContainer<K, string>
 
 const recurseNormal = function <T extends Keyable>(all: Set<string>, args: TCArg<T>[]) {
     if (args.length === 0) {
@@ -58,38 +77,20 @@ export class SecretClass<K extends Keyable> {
 }
 
 
-export interface ThemeObj {
-    [key: string]: string
-}
-
-type HasClassName = {
-    className?: string;
-}
-
-type ThemeFn<T extends Keyable, R> = ((...classes: TCArg<T>[]) => R);
-
-type ThemeRecord<K extends Keyable, V> = Record<K, V>;
-
-export type KeyedThemeFn<T extends Keyable, R> = ThemeFn<T, R> & ThemeRecord<T, R>
-
-type StyleRet<K extends Keyable> = KeyedThemeFn<K, string> & {
-    container(props: HasClassName | string): string,
-}
-
-export const styleFactory = <StyleT extends ThemeObj, StyleTK extends keyof StyleT>(tc, compTheme: StyleT):
-    StyleRet<StyleTK> => assign(((...classes: TCArg<StyleTK>[]) => new SecretClass(classes, tc).toString()), keys(compTheme).reduce((r, k) => {
-    Object.defineProperty(r, k, {
-        enumerable: true,
-        get() {
-            return tc(k);
+export const styleFactory = <StyleT extends ThemeObj, StyleTK extends keyof StyleT>(tc, compTheme: StyleT): StyleRet<StyleTK> =>
+    Object.assign(((...classes) => new SecretClass(classes, tc).toString()), Object.keys(compTheme).reduce((r, k) => {
+        Object.defineProperty(r, k, {
+            enumerable: true,
+            get() {
+                return tc(k);
+            }
+        });
+        return r;
+    }, {} as ThemeRecord<StyleTK, string>), {
+        container(props, ...rest) {
+            return tc('container', props.className && adopt(props.className), ...rest);
         }
     });
-    return r;
-}, {} as ThemeRecord<StyleTK, string>), {
-    container(props) {
-        return tc('container', typeof props === 'string' ? adopt(props) : props && props.className ? adopt(props.className) : '');
-    }
-});
 
 
 export const adopt: ThemeFn<string, SecretClass<string>> = (...classes) => new SecretClass<string>(classes);

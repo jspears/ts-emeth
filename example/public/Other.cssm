@@ -3,8 +3,16 @@
 }
 
 .header {
-    color: yellow;
+    color: greenyellow;
     padding: 1em;
     margin: 1em;
     text-indent: 50%;
+}
+
+.more {
+    border: 1em solid green;
+}
+
+.comp {
+    border: 1em solid coral;
 }

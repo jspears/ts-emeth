@@ -5,6 +5,8 @@ export {adopt} from "ts-emeth";
 
 export enum CompCssStyles {
   "container" = "container",
+  "border" = "border",
+  "hello" = "hello",
 }
 
 export const CssStyles = CompCssStyles;

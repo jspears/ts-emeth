@@ -1,5 +1,16 @@
 .container {
-    background:blue;
-    color:pink;
-    font-size: 5em
+    display: flex;
+    background: blue;
+    color: pink;
+    font-size: 2em;
+}
+
+.border {
+    border: 3px solid purple;
+}
+
+.hello {
+    padding: 3em;
+    margin: 1em;
+    border: 1px solid green;
 }

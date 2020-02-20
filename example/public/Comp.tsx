@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Style from './Comp.cssi';
+import tc from './Comp.cssi';
 
 export type CompProps = {
     className?: string,
 }
-const Comp: React.FC<CompProps> = (props) => (<div className={Style.container(props)}>
-    <span>hello</span>
+const Comp: React.FC<CompProps> = (props) => (<div className={tc.container(props, 'border')}>
+    <span className={tc('hello')}>hello</span>
     {props.children}
 </div>);
 
