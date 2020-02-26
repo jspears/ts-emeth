@@ -5,7 +5,7 @@ export type Keyable = string | number | symbol;
 
 export type TCArg<T extends Keyable> = T
     | T[]
-    | { [P in T]?: boolean | null | undefined | void | number | string | SecretClass<any>}
+    | { [P in T]?: boolean | null | undefined | void | number | string | SecretClass<any> }
     | TCArg<T>[]
     | SecretClass<any>;
 
@@ -28,17 +28,16 @@ export type HasContainer<K extends Keyable, R> = {
 };
 
 export type StyleRet<K extends Keyable> = KeyedThemeFn<K, string> & HasContainer<K, string>
-
+function forEach$recurse(v){
+    recurseNormal(this, [v]);
+}
 const recurseNormal = function <T extends Keyable>(all: Set<string>, args: TCArg<T>[]) {
-    if (args.length === 0) {
-        return all;
-    }
     const arg = args[0];
     if (arg != null) {
         if (Array.isArray(arg)) {
-            recurseNormal(all, arg);
+            arg.forEach(forEach$recurse, all);
         } else if (arg instanceof SecretClass) {
-            arg.normalize.forEach(all.add, all);
+            arg.normalize.forEach(forEach$recurse, all);
         } else {
             switch (typeof arg) {
                 case "bigint":
@@ -52,17 +51,19 @@ const recurseNormal = function <T extends Keyable>(all: Set<string>, args: TCArg
                     Object.entries(arg).map(([key, value]) => value && all.add(key));
                     break;
                 case "string":
-                    arg.split(/ +?/).filter(Boolean).forEach(all.add, all);
+                    all.add(arg);
                     break;
             }
         }
     }
 
-    recurseNormal(all, args.slice(1));
+    if (args.length > 1) {
+        recurseNormal(all, args.slice(1));
+    }
     return all;
 };
 
-const DEFAULT_TC: Classenames = (args) => Array.isArray(args) ? args.filter(Boolean).join(' ') : args;
+const DEFAULT_TC: Classenames = (...args) => args.filter(Boolean).join(' ')
 
 //This is how we will make adopt and friends work.
 export class SecretClass<K extends Keyable> {
@@ -88,7 +89,7 @@ export const styleFactory = <StyleT extends ThemeObj, StyleTK extends keyof Styl
         return r;
     }, {} as ThemeRecord<StyleTK, string>), {
         container(props, ...rest) {
-            return tc('container', props.className && adopt(props.className), ...rest);
+            return new SecretClass(['container', props.className && adopt(props.className), ...rest], tc).toString();
         }
     });
 

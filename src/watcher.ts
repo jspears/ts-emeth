@@ -7,10 +7,6 @@ import {transform} from "./extract";
 
 const writeFile = promisify(fs.writeFile);
 
-
-const verbose = process.argv.includes('-v', 2) || process.argv.includes('--verbose', 2);
-
-
 export type TemplateFn = (fileName: string, keys: string[]) => string;
 
 export type Options = {
@@ -39,7 +35,8 @@ export const transformFile = async ({
                                         localsConvention,
                                         template,
                                         outDir,
-                                        extension = ''
+                                        extension = '',
+                                        verbose
                                     }: Options): Promise<Run> => {
     console.log('template = ' + template);
     const extract = transform({context: cwd}, {localsConvention});
