@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "emeth": "^1.0.2",
-    "ts-emeth": "^1.0.0",
+    "ts-emeth": "^1.0.3",
     "@types/webpack-env": "^1.15.1"
   },
   "scripts": {
@@ -18,11 +18,11 @@
     "start": "tse -w -v -path=/public/**/*.cssm & mrbuilder"
   },
   "devDependencies": {
-    "@mrbuilder/cli": "^4.0.0-alpha.14",
-    "@mrbuilder/plugin-babel-7": "^4.0.0-alpha.14",
-    "@mrbuilder/plugin-typescript": "^4.0.0-alpha.14",
-    "@mrbuilder/preset-app": "^4.0.0-alpha.14",
-    "@mrbuilder/plugin-emeth": "^4.0.0-alpha.10"
+    "@mrbuilder/cli": "^4.0.0",
+    "@mrbuilder/plugin-babel-7": "^4.0.0",
+    "@mrbuilder/plugin-typescript": "^4.0.0",
+    "@mrbuilder/preset-app": "^4.0.0",
+    "@mrbuilder/plugin-emeth": "^4.0.0"
   },
   "mrbuilder": {
     "plugins": [
