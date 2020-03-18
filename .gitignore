@@ -3,3 +3,4 @@ node_modules
 *-error.log
 lib
 .nyc_output
+src/__test__/fixtures/test.cssi.ts
