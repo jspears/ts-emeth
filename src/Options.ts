@@ -1,5 +1,6 @@
 import {Arg} from "ts-arg";
-import {Options as WatcherOptions, TemplateFn} from "./watcher";
+import {TemplateFn} from "./types";
+import {WatcherOptions} from './watcher';
 
 export class Options implements WatcherOptions {
 

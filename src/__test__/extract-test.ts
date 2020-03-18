@@ -1,12 +1,27 @@
 import {expect} from 'chai';
-import {transform} from "../extract";
+import {extract as transform} from "../extract"
+
+const writeFile = async () => {
+};
 
 describe('extract', function () {
 
     it('should extract camelCaseOnly', async function () {
-        const extract = transform({context: './src/__test__/'}, {localsConvention: 'camelCaseOnly'});
+        const resp: string[] = [];
+        let name: string;
+        const extract = transform({
+            cwd: './src/__test__/',
+            localsConvention: 'camelCaseOnly',
+            template(filename, keys) {
+                name = filename;
+                resp.push(...keys);
+                return '';
+            },
+            writeFile
 
-        const resp = await extract('fixtures/test.cssm');
+        });
+
+        await extract('fixtures/test.cssm');
         expect(resp).to.eql(['edit',
             'highlight',
             'container',
@@ -15,9 +30,20 @@ describe('extract', function () {
             'nameEdit']);
     });
     it('should extract camelCase', async function () {
-        const extract = transform({context: './src/__test__/'}, {localsConvention: 'camelCase'});
+        let file, resp;
+        const extract = transform({
+            localsConvention: 'camelCase',
+            writeFile,
+            cwd: './src/__test__/',
+            extension:'.cssi.ts',
+            template(filename, keys) {
+                file = filename;
+                resp = keys;
+                return '';
+            }
+        });
 
-        const resp = await extract('fixtures/test.cssm');
+        await extract('fixtures/test.cssm');
         expect(resp).to.eql(['edit',
             'highlight',
             'container',
@@ -25,11 +51,24 @@ describe('extract', function () {
             'camelCase',
             'word',
             'nameEdit']);
-    });
-    it('should extract asIs', async function () {
-        const extract = transform({context: './src/__test__/'}, {localsConvention: 'asIs'});
 
-        const resp = await extract('fixtures/test.cssm');
+        expect(file).to.match(/fixtures\/test\.cssi\.ts/);
+    });
+
+    it('should extract asIs', async function () {
+        let name, resp;
+        const extract = transform({
+            cwd: './src/__test__/',
+            localsConvention: 'asIs',
+            writeFile,
+            template(file, keys) {
+                name = file;
+                resp = keys;
+                return '';
+            }
+        });
+
+        await extract('fixtures/test.cssm');
         expect(resp).to.eql(['edit',
             'highlight',
             'container',
