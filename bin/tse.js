@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/cli').runCli();
+require(`${__dirname}/lib/cli`).runCli();
