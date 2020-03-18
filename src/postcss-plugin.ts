@@ -7,11 +7,11 @@ import {importTemplate, dashesCamelCase, writeFile as _writeFile} from './util';
 
 
 const resolveMessage = (message: postcss.ResultMessage): string | undefined => {
-    if (message.type === 'export') {
-        return message.value?.name ?? message.value;
+    if (message.type === 'export' && message.value) {
+        return message.value.name || message.value;
     }
     if (message.type == 'replacer') {
-        return message.value?.localName;
+        return message.value && message.value.localName;
     }
 };
 

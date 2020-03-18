@@ -4,8 +4,8 @@
   "description": "CSS Modules cli for emeth and TypeScript",
   "types": "src",
   "main": "lib",
-  "source": "src",
   "license": "MIT",
+  "browser": "./lib/browser.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jspears/ts-emeth.git"
