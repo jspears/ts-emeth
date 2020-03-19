@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "tse --path=./public/**/*.cssm && tsc",
-    "start": "tse -w -v -path=/public/**/*.cssm & mrbuilder"
+    "watch": "tse -w -v -path=/public/**/*.cssm && tsc -w",
+    "start": "mrbuilder"
   },
   "devDependencies": {
     "@mrbuilder/cli": "^4.0.0",
@@ -26,17 +27,18 @@
   },
   "mrbuilder": {
     "plugins": [
-      [
-        "@mrbuilder/plugin-typescript",
-        {
-          "useBabel": true
-        }
-      ],
       "@mrbuilder/plugin-emeth",
       [
         "@mrbuilder/plugin-css",
         {
           "modules": "/\\.cssm$/"
+        }
+      ],
+      "ts-emeth",
+      [
+        "@mrbuilder/plugin-typescript",
+        {
+          "useBabel": true
         }
       ]
     ]

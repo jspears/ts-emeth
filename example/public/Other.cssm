@@ -11,6 +11,7 @@
 
 .more {
     border: 1em solid green;
+
 }
 
 .comp {

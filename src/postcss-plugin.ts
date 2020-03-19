@@ -1,10 +1,7 @@
-import chalk from 'chalk';
-import {resolve} from 'path';
 import postcss from 'postcss';
-import _template from './template';
+import {generate} from './generate';
 import {EmethTSOptions} from './types';
-import {importTemplate, dashesCamelCase, writeFile as _writeFile} from './util';
-
+import {dashesCamelCase} from './util';
 
 const resolveMessage = (message: postcss.ResultMessage): string | undefined => {
     if (message.type === 'export' && message.value) {
@@ -15,24 +12,14 @@ const resolveMessage = (message: postcss.ResultMessage): string | undefined => {
     }
 };
 
-const plugin = postcss.plugin('ts-emeth', function ({
-                                                        cwd = process.cwd(),
-                                                        extension = '.cssi.ts',
-                                                        localsConvention = 'camelCase',
-                                                        template = _template,
-                                                        writeFile = _writeFile
-                                                    }: EmethTSOptions) {
+const plugin = postcss.plugin('ts-emeth', function (opts: EmethTSOptions = {}) {
     return async (root, result) => {
-        const templateFn = await importTemplate(cwd, template);
-
-        result.warnings().forEach(warning => console.warn(chalk.yellowBright(`WARN`), warning));
-
         const exports: string[] = [];
 
         for (const message of result.messages) {
             let name = resolveMessage(message);
             if (name) {
-                switch (localsConvention) {
+                switch (opts.localsConvention || 'camelCase') {
                     case 'camelCase': {
                         const cleanName = dashesCamelCase(name);
                         if (cleanName !== name) {
@@ -54,11 +41,7 @@ const plugin = postcss.plugin('ts-emeth', function ({
                 }
             }
         }
-        const outFile = resolve(cwd, result.opts.to).replace(/\.\w+?$/, extension);
-        const content = await templateFn(outFile, exports);
-        if (content && content.trim()) {
-            await writeFile(outFile, content, 'utf8');
-        }
+        await generate(result.opts.to || result.opts.from, exports, opts);
     }
 });
 
