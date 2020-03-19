@@ -30,18 +30,11 @@ unfortunately matters.
 
  "mrbuilder": {
     "plugins": [
-      "@mrbuilder/plugin-emeth",
+      "ts-emeth",
       [
         "@mrbuilder/plugin-css",
         {
           "modules": "/\\.cssm$/"
-        }
-      ],
-      "ts-emeth",
-      [
-        "@mrbuilder/plugin-typescript",
-        {
-          "useBabel": true
         }
       ]
     ]

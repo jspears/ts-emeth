@@ -28,7 +28,8 @@
     "css-loader": "^3.4.2",
     "reflect-metadata": "^0.1.13",
     "ts-arg": "^1.0.3",
-    "emeth": "^1.0.2"
+    "emeth": "^1.0.2",
+    "@mrbuilder/plugin-emeth": "^4.0.0"
   },
   "devDependencies": {
     "nyc": "^15.0.0",
@@ -42,6 +43,9 @@
     "typescript": "^3.8.3"
   },
   "mrbuilder": {
-    "plugin": "./mrbuilder-plugin.js"
+    "plugin": "./mrbuilder-plugin.js",
+    "plugins": [
+      "@mrbuilder/plugin-emeth"
+    ]
   }
 }

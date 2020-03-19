@@ -22,19 +22,17 @@
     "@mrbuilder/cli": "^4.0.0",
     "@mrbuilder/plugin-babel-7": "^4.0.0",
     "@mrbuilder/plugin-typescript": "^4.0.0",
-    "@mrbuilder/preset-app": "^4.0.0",
-    "@mrbuilder/plugin-emeth": "^4.0.0"
+    "@mrbuilder/preset-app": "^4.0.0"
   },
   "mrbuilder": {
     "plugins": [
-      "@mrbuilder/plugin-emeth",
+      "ts-emeth",
       [
         "@mrbuilder/plugin-css",
         {
           "modules": "/\\.cssm$/"
         }
       ],
-      "ts-emeth",
       [
         "@mrbuilder/plugin-typescript",
         {

@@ -5,7 +5,6 @@ import {join, isAbsolute} from 'path';
 import postcss from 'postcss';
 import {promisify} from 'util';
 import plugin from './postcss-plugin';
-import template from './template';
 import {EmethTSOptions, Run} from './types';
 
 const readFile = promisify(fs.readFile);
@@ -16,11 +15,7 @@ export type Scope = {
     remainingRequest?: string
 }
 
-export const extract = (options: EmethTSOptions = {
-    cwd: process.cwd(),
-    template,
-    localsConvention: 'camelCase'
-}): Run => async function (resourcePath: string): Promise<void> {
+export const extract = (options: EmethTSOptions): Run => async function (resourcePath: string): Promise<void> {
     const scope: (Scope & { resourcePath: string }) = {
         context: options.cwd,
         resourcePath
