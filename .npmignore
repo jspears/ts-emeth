@@ -1,0 +1,5 @@
+.idea
+node_modules
+*-error.log
+.nyc_output
+src/__test__/fixtures/test.cssi.ts
