@@ -22,8 +22,7 @@ describe('extract', function () {
         });
 
         await extract('fixtures/test.cssm');
-        expect(resp).to.eql(['edit',
-            'highlight',
+        expect(resp).to.eql([
             'container',
             'camelCase',
             'word',
@@ -44,8 +43,7 @@ describe('extract', function () {
         });
 
         await extract('fixtures/test.cssm');
-        expect(resp).to.eql(['edit',
-            'highlight',
+        expect(resp).to.eql([
             'container',
             'camel-case',
             'camelCase',
@@ -69,8 +67,7 @@ describe('extract', function () {
         });
 
         await extract('fixtures/test.cssm');
-        expect(resp).to.eql(['edit',
-            'highlight',
+        expect(resp).to.eql([
             'container',
             'camel-case',
             'word',

@@ -21,7 +21,11 @@ export const extract = (options: EmethTSOptions): Run => async function (resourc
         resourcePath
     };
     const content = await readFile(isAbsolute(resourcePath) ? resourcePath : join(scope.context, resourcePath), {encoding: 'utf8'});
-    await postcss([...getModulesPlugins(options, scope), icssParser(), plugin(options)]).process(content, {
+    await postcss([...getModulesPlugins(options, scope), icssParser({
+        urlHandler(path) {
+            return path;
+        }
+    }), plugin(options)]).process(content, {
         from: scope.remainingRequest || '',
         to: resourcePath
     });
