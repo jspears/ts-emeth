@@ -6,12 +6,15 @@ export default function (...args: any[]) {
     const async = () => {
         const cb = this.async();
         return (e, o) => {
+            if (e || o == null) {
+                return cb(e, o);
+            }
             try {
                 const keys = Object.keys(JSON.parse((o + '').replace(/[\s\S]*exports\.locals\s*=\s*([\s\S]*});\s+?[\s\S]*/mg, '$1')));
                 generate(this.resourcePath, keys, this.query).then(() => cb(null, o), cb);
-            } catch (e) {
-                console.trace(e);
-                cb(e, o);
+            } catch (err) {
+                console.trace(err);
+                cb(err, o);
             }
         }
     };
