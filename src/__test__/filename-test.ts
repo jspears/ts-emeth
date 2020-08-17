@@ -13,5 +13,8 @@ describe('fileToClassName', function(){
     it('should return a classname from a relative url', function(){
         expect(fileToClassName('./Something.module.css'))
             .to.eql('Something')
+    });
+    it('should work like this too', function(){
+        expect(fileToClassName('/ts/emeht/is/here/fixtures/test.cssi.ts')).to.eql('test');
     })
 })

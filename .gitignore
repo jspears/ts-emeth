@@ -4,3 +4,5 @@ node_modules
 lib
 .nyc_output
 src/__test__/fixtures/test.cssi.ts
+src/__test__/fixtures/test2.module.cssi.ts
+
