@@ -28,6 +28,8 @@ export const generate = async (resourcePath: string, exports: string[], {
     cwd = process.cwd(),
     extension = '.cssi.ts',
     template = _template,
+    pattern,
+    replace,
     writeFile = _writeFile
 }: EmethTSOptions = {}) => {
     if (inCache(resourcePath, exports)) {
@@ -35,7 +37,7 @@ export const generate = async (resourcePath: string, exports: string[], {
     }
     const templateFn = await importTemplate(cwd, template);
     const outFile = resolve(cwd, resourcePath).replace(/\.\w+?$/, extension);
-    const content = await templateFn(outFile, exports.filter(Boolean));
+    const content = await templateFn(outFile, exports.filter(Boolean), pattern, replace);
     if (content && content.trim()) {
         await writeFile(outFile, content, 'utf8');
     }

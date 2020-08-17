@@ -4,8 +4,8 @@ import {promisify} from 'util';
 import {TemplateFn} from './types';
 
 export const writeFile = promisify(_writeFile);
-const STYLE_RE = /.*\/(?:([^/]+?)\/styles|([^/]+?))\..+?$/;
-export const fileToClassName = (fileName: string): string => fileName.replace(STYLE_RE, '$1$2');
+const STYLE_RE = /.+?\/(?:([^/]+?)\/styles|([^/]+?))\.(?:module\.css|cssm)$/;
+export const fileToClassName = (fileName: string, pattern: string | RegExp = STYLE_RE, replace = '$1$2'): string => fileName.replace(pattern, replace);
 
 export const dashesCamelCase = (str: string): string => {
     return str.replace(/-+(\w)/g, (_, firstLetter) => firstLetter.toUpperCase());

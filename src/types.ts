@@ -1,4 +1,4 @@
-export type TemplateFn = (fileName: string, keys: string[]) => Promise<string> | string;
+export type TemplateFn = (fileName: string, keys: string[], pattern?:string|RegExp, replace?:string) => Promise<string> | string;
 
 export type EmethTSOptions = {
     localsConvention?: 'camelCase' | 'camelCaseOnly' | 'asIs',
@@ -6,6 +6,8 @@ export type EmethTSOptions = {
     cwd?: string,
     extension?: string,
     writeFile?(name: string, content: string, encoding?: 'utf8'): Promise<void>
+    pattern?: string | RegExp,
+    replace?: string
 
 }
 
