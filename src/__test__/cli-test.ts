@@ -6,8 +6,8 @@ describe('cli', function () {
 
     it('should generate file', async function () {
         await runCli(['', '', '-p', `${__dirname}/fixtures/**/*.cssm`]);
-        if (process.env.CI_NAME){
-            console.log('eh whatevers');
+        if (process.env.CI){
+            console.log('no workie in CI');
             return
         }
 
@@ -35,8 +35,8 @@ export default styleFactory(themeClass({ displayName: "test" }), CssStyles);
 
     it('should generate file from css module',  async function () {
         await runCli(['', '', '-p', `${__dirname}/fixtures/**/*.module.css`]);
-        if (process.env.CI_NAME){
-            console.log('eh whatevers');
+        if (process.env.CI){
+            console.log('no workie in CI');
             return
         }
         const content = fs.readFileSync(`${__dirname}/fixtures/test2.module.cssi.ts`, 'utf8');
