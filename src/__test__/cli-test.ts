@@ -28,8 +28,7 @@ export default styleFactory(themeClass({ displayName: "test" }), CssStyles);
 `.trim())
     })
 
-    it('should generate file from css module', process.env.CI_NAME ? () => {
-    } : async function () {
+    it('should generate file from css module',  async function () {
         await runCli(['', '', '-p', `${__dirname}/fixtures/**/*.module.css`]);
         const content = fs.readFileSync(`${__dirname}/fixtures/test2.module.cssi.ts`, 'utf8');
         expect(content.trim()).to.eql(
