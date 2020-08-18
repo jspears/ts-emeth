@@ -656,6 +656,11 @@ emeth@^1.0.2:
   resolved "https://registry.yarnpkg.com/emeth/-/emeth-1.0.2.tgz#c6f60d0e4a17f933f528c8ca9117f6ffeab862f7"
   integrity sha1-xvYNDkoX+TP1KMjKkRf2/+q4Yvc=
 
+emeth@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/emeth/-/emeth-2.0.0.tgz#7ffb3ad074d5e26f827f056f4fe3c313d4292a58"
+  integrity sha512-YVLK8tJoeJcWkCalh6It8yGrltE3GOSPx6+YWk9P3Fneuk5a62RMwWoqgvy3WfMrFQrQGkQeCVMOVCOts5tLCw==
+
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
