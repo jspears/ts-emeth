@@ -1,4 +1,4 @@
-import {Classenames} from "emeth";
+import {Classenames} from "./emeth";
 
 export type Keyable = string | number | symbol;
 
