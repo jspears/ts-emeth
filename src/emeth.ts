@@ -5,8 +5,14 @@ declare global {
         __EMETH_THEMES: Types[];
     }
 }
+export type DisplayName = string | {
+    displayName?: string
+}
 
-const themes: Types[] = window.__EMETH_THEMES || (window.__EMETH_THEMES = []);
+export type Classenames = (...args: string[]) => string;
+
+
+const themes: Types[] = globalThis.__EMETH_THEMES || (globalThis.__EMETH_THEMES = []);
 let themeMap: Record<string, string> = {};
 const EMPTY_FUNC = () => {
 };

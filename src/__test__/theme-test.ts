@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import theme, {themeClass} from 'emeth';
+import {theme, themeClass} from '..';
 import {styleFactory} from "../styleFactory";
 
 
@@ -19,7 +19,7 @@ describe('theme', function () {
             test: Object.keys(testCssStyles).reduce((r, v) => {
                 r[v] = `t-${v}`;
                 return r;
-            }, {})
+            }, {}) as Record<string, string>
         });
 
 

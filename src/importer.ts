@@ -1,4 +1,4 @@
-import theme from 'emeth';
+import {theme} from './emeth';
 
 type Component = Record<string, string>
 type Context = ((key: string) => any) & { keys(): string[] };

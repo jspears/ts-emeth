@@ -192,13 +192,6 @@
   resolved "https://registry.npmjs.org/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@mrbuilder/plugin-emeth@^4.0.0":
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/@mrbuilder/plugin-emeth/-/plugin-emeth-4.3.0.tgz#f41fb8c17e3403a322166f041dbe6f5149c6750b"
-  integrity sha512-gpcOaH58SjglD1U9Qxbcn/cPhUymZC+FUgeDi0xjCwqqGSj6SfHo1dhpyvdDkRVLACTB3I/VHX+k8bPKcK5WNg==
-  dependencies:
-    emeth "^1.0.2"
-
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.npmjs.org/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -650,16 +643,6 @@ diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
-
-emeth@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/emeth/-/emeth-1.0.2.tgz#c6f60d0e4a17f933f528c8ca9117f6ffeab862f7"
-  integrity sha1-xvYNDkoX+TP1KMjKkRf2/+q4Yvc=
-
-emeth@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/emeth/-/emeth-2.0.0.tgz#7ffb3ad074d5e26f827f056f4fe3c313d4292a58"
-  integrity sha512-YVLK8tJoeJcWkCalh6It8yGrltE3GOSPx6+YWk9P3Fneuk5a62RMwWoqgvy3WfMrFQrQGkQeCVMOVCOts5tLCw==
 
 emoji-regex@^7.0.1:
   version "7.0.3"

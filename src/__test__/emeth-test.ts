@@ -1,13 +1,13 @@
-import theme, {settings, themeClass} from 'emeth';
+import  {theme, settings, themeClass} from '..';
 import {expect}                      from 'chai';
 
 const execLoop = c => c();
 describe('theme', function () {
     it('should return in the right order', function () {
         const d  = [
-            theme({A: {test: 1}}),
-            theme({B: {test: 3}}),
-            theme({A: {test: 2}})
+            theme({A: {test: '1'}}),
+            theme({B: {test: '3'}}),
+            theme({A: {test: '2'}})
         ];
         const tc = themeClass({displayName: 'A'});
 
@@ -16,9 +16,9 @@ describe('theme', function () {
     });
     it('should return unknown class', function () {
         const d       = [
-            theme({A: {test: 1}}),
-            theme({B: {test: 3}}),
-            theme({A: {test: 2}})
+            theme({A: {test: '1'}}),
+            theme({B: {test: '3'}}),
+            theme({A: {test: '2'}})
         ];
         const owarn   = settings.warn;
         const capture = [];
