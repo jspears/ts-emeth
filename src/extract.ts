@@ -1,7 +1,5 @@
-import {icssParser} from 'css-loader/dist/plugins';
-import {getModulesPlugins} from 'css-loader/dist/utils';
 import * as fs from 'fs';
-import {join, isAbsolute} from 'path';
+import {isAbsolute, join} from 'path';
 import postcss from 'postcss';
 import {promisify} from 'util';
 import plugin from './postcss-plugin';
@@ -18,16 +16,15 @@ export type Scope = {
 export const extract = (options: EmethTSOptions): Run => async function (resourcePath: string): Promise<void> {
     const scope: (Scope & { resourcePath: string }) = {
         context: options.cwd,
-        resourcePath
+        resourcePath,
     };
-    const content = await readFile(isAbsolute(resourcePath) ? resourcePath : join(scope.context, resourcePath), {encoding: 'utf8'});
-    await postcss([...getModulesPlugins(options, scope), icssParser({
-        urlHandler(path) {
-            return path;
-        }
-    }), plugin(options)]).process(content, {
-        from: scope.remainingRequest || '',
-        to: resourcePath
+    const from = isAbsolute(resourcePath) ? resourcePath : join(process.cwd(), scope.context, resourcePath);
+
+    const content = await readFile(from, {encoding: 'utf8'});
+    await postcss(plugin(options)).process(content, {
+        from,
+        to: resourcePath,
+
     });
 };
 

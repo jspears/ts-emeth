@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": "./src",
     "outDir": "lib",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -10,11 +10,12 @@
     "declaration": false,
     "jsx": "react",
     "lib": [
-      "es2018"
+      "es2018",
+      "dom"
     ]
   },
   "exclude": [
-    "example/**",
-    "**/__test__/**"
+    "example",
+    "src/__test__/fixtures/**"
   ]
 }

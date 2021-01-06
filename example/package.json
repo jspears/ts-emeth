@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "emeth": "^1.0.2",
-    "ts-emeth": "^1.0.3",
+    "ts-emeth": "file://../",
     "@types/webpack-env": "^1.15.1"
   },
   "scripts": {
     "build": "tse --path=./public/**/*.cssm && tsc",
     "watch": "tse -w -v -path=/public/**/*.cssm && tsc -w",
-    "start": "mrbuilder"
+    "start": "mrbuilder "
   },
   "devDependencies": {
     "@mrbuilder/cli": "^4.0.0",

@@ -53,25 +53,5 @@ describe('extract', function () {
         expect(file).to.match(/fixtures\/test\.cssi\.ts/);
     });
 
-    it('should extract asIs', async function () {
-        let name, resp;
-        const extract = transform({
-            cwd: './src/__test__/',
-            localsConvention: 'asIs',
-            writeFile,
-            template(file, keys) {
-                name = file;
-                resp = keys;
-                return '';
-            }
-        });
-
-        await extract('fixtures/test.cssm');
-        expect(resp).to.eql([
-            'container',
-            'camel-case',
-            'word',
-            'nameEdit']);
-    });
 
 });
