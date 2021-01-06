@@ -9,9 +9,7 @@ export const fileToClassName = (fileName: string, pattern: string | RegExp = STY
   return fileName.replace(pattern, replace);
 
 }
-export const dashesCamelCase = (str: string): string => {
-    return str.replace(/-+(\w)/g, (_, firstLetter) => firstLetter.toUpperCase());
-};
+
 
 export const importTemplate = async (cwd: string, file: TemplateFn | string): Promise<TemplateFn> => {
     if (!file) {
