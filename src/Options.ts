@@ -1,6 +1,7 @@
 import {Arg} from "ts-arg";
-import {TemplateFn} from "./types";
+import {LocalsConvention, TemplateFn} from "./types";
 import {WatcherOptions} from './watcher';
+
 
 export class Options implements WatcherOptions {
 
@@ -20,7 +21,7 @@ export class Options implements WatcherOptions {
     cwd: string = process.cwd();
 
     @Arg('Convention for converting')
-    localsConvention: 'asIs' | 'camelCase' | 'camelCaseOnly' = 'camelCase';
+    localsConvention: LocalsConvention = 'camelCase';
 
     @Arg("The extension for output file")
     extension: string = '.cssi.ts';
