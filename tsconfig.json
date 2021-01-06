@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "lib",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -15,6 +15,7 @@
     ]
   },
   "exclude": [
+    "example",
     "src/__test__/fixtures/**"
   ]
 }

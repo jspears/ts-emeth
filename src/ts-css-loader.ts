@@ -1,9 +1,9 @@
 import loader from 'css-loader';
 import {generate} from './generate';
 
-const LOCALS_RE = /[\s\S]*exports\.locals\s*=\s*([\s\S]*});\s+?[\s\S]*/mg;
+const LOCALS_RE = /[\s\S]*(?:exports|___CSS_LOADER_EXPORT___)\.locals\s*=\s*([\s\S]*});\s+?[\s\S]*/gm
 
-export default function (...args: any[]) {
+export default function (...args: unknown[]) {
     //Ignore if not enabled for css modules.
     if (!this.query.modules) {
         return loader.apply(this, args);
@@ -27,5 +27,13 @@ a misconfiguration.`)
 
         }
     };
+    if (this.query.localsConvention){
+        this.query.modules.exportLocalsConvention = this.query.localsConvention;
+        if (this.query.modules.context){
+            this.query.modules.localIdentContext = this.query.modules.context;
+        }
+        delete this.query.modules.context;
+        delete this.query.localsConvention;
+    }
     return loader.call({...this, async}, ...args);
 }
