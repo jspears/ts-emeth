@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test-gen": "./bin/tse.js -p ./src/__test__/fixtures/**/*.cssm",
-    "test": "$npm_execpath run test-gen && mocha -r ts-node/register ./src/__test__/**/*-test.ts*",
+    "test": "$npm_execpath run test-gen && mocha -r ./src/__test__/setup.js -r ts-node/register ./src/__test__/**/*-test.ts*",
     "prepare": "tsc && $npm_execpath run test",
     "watch": "tsc -w"
   },

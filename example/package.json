@@ -19,10 +19,10 @@
     "start": "mrbuilder"
   },
   "devDependencies": {
-    "@mrbuilder/cli": "^4.0.0",
-    "@mrbuilder/plugin-babel-7": "^4.0.0",
-    "@mrbuilder/plugin-typescript": "^4.0.0",
-    "@mrbuilder/preset-app": "^4.0.0"
+    "@mrbuilder/cli": "^4.4.0",
+    "@mrbuilder/plugin-babel-7": "^4.4.0",
+    "@mrbuilder/plugin-typescript": "^4.4.0",
+    "@mrbuilder/preset-app": "^4.4.0"
   },
   "mrbuilder": {
     "plugins": [
